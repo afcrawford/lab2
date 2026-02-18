@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Electronic Musicians Synthesizer</title>
+</head>
+<body>
+    <h1>Electronic Musicians Keyboard</h1>
+    <img src="https://xpressmag.com.au/wp-content/uploads/2016/10/Discovery.DAFTPUNK.jpg" alt="Daft Punk" width="500" height="300" id="daftpunk" style="position:absolute; top:50%; left:70%; transform:translate(-50%, -50%);">
+    <img src="https://images2.alphacoders.com/478/478496.jpg" alt ="deadmau5" width="500" height="300" id="deadmau5" style="position:absolute; top:50%; left:70%; transform:translate(-50%, -50%);">
+    <img src="https://static.qobuz.com/images/playlists/5766799_3f6042b4073b910b45abbdc3dd1aeacf_rectangle.jpg" alt="Royksopp" width="500" height="300" id="royksopp" style="position:absolute; top:50%; left:70%; transform:translate(-50%, -50%);">
+    <img src="https://happymag.tv/wp-content/uploads/2023/02/fred-again-live-533x321.jpg" alt="Fred Again" width="500" height="300" id="fredagain" style="position:absolute; top:50%; left:70%; transform:translate(-50%, -50%);">
+    <p>Choose your synthesis type (or none):</p>
+    <select id="synthesis_type">
+        <option value="none">None</option>
+        <option value="additive">Additive</option>
+        <option value="am">AM</option>
+        <option value="fm">FM</option>
+    </select>
+    <p>Do you want to add an LFO? (AM/FM only)</p>
+    <select id="lfo">
+        <option value="no_lfo">No</option>
+        <option value="yes_lfo">Yes</option>
+    </select>
+    <p>Select depth for AM synthesis:</p>
+    <input type="range" id="am_depth" min="0" max="1" step="0.01" value="0.5">
+    <p>Change your Waveform (sine default):</p>
+    <button id="sine">Sine</button>
+    <button id="sawtooth">Sawtooth</button>
+    <button id="square">Square</button>
+    <button id="triangle">Triangle</button>
+    <p>Use the keyboard to play musical notes and discover some iconic electronic musicians.</p>
+    <div id="subtitle" style="position:absolute; text-align:center; font-size:24px; top:80%; left:70%; transform:translate(-30%, -30%); font-weight:bold; margin-top:20px;"></div>
+    <p> Key - Note<br>
+    Z - C<br>
+    S - C#<br>
+    X - D<br>
+    D - D#<br>
+    C - E<br>
+    V - F<br>
+    G - F#<br>
+    B - G<br>
+    H - G#<br>
+    N - A<br>
+    J - A#<br>
+    M - B<br>
+    Q - C<br>
+    2 - C#<br>
+    W - D<br>
+    3 - D#<br>
+    E - E<br>
+    R - F<br>
+    5 - F#<br>
+    T - G<br>
+    6 - G#<br>
+    Y - A<br>
+    7 - A#<br>
+    U - B<br>
+    </p>
+</body>
+
+<script src="main_synth.js"></script>
+
+</html>
