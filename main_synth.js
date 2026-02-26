@@ -232,7 +232,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         let modulator = audioCtx.createOscillator();
         modulator.type = type;
         let modulationIndex = audioCtx.createGain();
-        modulationIndex.gain.setValueAtTime(25, audioCtx.currentTime + 0.05);
+        modulationIndex.gain.setValueAtTime(50, audioCtx.currentTime + 0.05);
         modulator.frequency.setValueAtTime(100, audioCtx.currentTime + 0.05);
 
         modulator.connect(modulationIndex);
@@ -278,6 +278,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
 });
+
 
 
 
