@@ -187,29 +187,24 @@ document.addEventListener("DOMContentLoaded", function(event) {
         let carrier = audioCtx.createOscillator();
         carrier.frequency.value = keyboardFrequencyMap[key];
         carrier.type = type;
-        let modulator = audioCtx.createOscillator();
-        modulator.frequency.setValueAtTime(10, audioCtx.currentTime);
-        modulator.type = type;
+        let modulatorFreq = audioCtx.createOscillator();
+        modulatorFreq.frequency.setValueAtTime(100, audioCtx.currentTime);
+        modulatorFreq.type = type;
 
         const modulatorGain = audioCtx.createGain();
         let depth = audioCtx.createGain();
         let depth_value = document.getElementById("am_depth").value;
         depth.gain.setValueAtTime(depth_value, audioCtx.currentTime);
         modulatorGain.gain.setValueAtTime(1-depth.gain.value, audioCtx.currentTime);
-        modulator.connect(depth).connect(modulatorGain.gain);
-
-        let modGain = audioCtx.createGain();
-        modGain.gain.setValueAtTime(0.0001, audioCtx.currentTime);
-        modGain.gain.exponentialRampToValueAtTime(1, audioCtx.currentTime + 0.4);
-        carrier.connect(modGain).connect(globalGain);
+        modulatorFreq.connect(depth).connect(modulatorGain.gain);
 
         carrier.connect(modulatorGain);
-        modulatorGain.connect(modGain);
-        modGain.connect(globalGain);
+        modulatorGain.connect(globalGain);
+
 
         carrier.start();
-        modulator.start();
-        activeOscillators[key] = {oscillator: [carrier, modulator], gainNode: modGain};
+        modulatorFreq.start();
+        activeOscillators[key] = {oscillator: [carrier, modulatorFreq], gainNode: modulatorGain};
 
         
         if (lfo_on) {
@@ -271,6 +266,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         subtitlediv.textContent = subtitles[index];
         subtitlediv.style.display = "block";
     }
+
 
 
 
