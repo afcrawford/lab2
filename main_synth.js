@@ -192,6 +192,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         modulatorFreq.type = type;
 
         const modulatorGain = audioCtx.createGain();
+        const secondaryGain = audioCtx.createGain();
+        
         let depth = audioCtx.createGain();
         let depth_value = document.getElementById("am_depth").value;
         depth.gain.setValueAtTime(depth_value, audioCtx.currentTime);
@@ -201,14 +203,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
         
         carrier.connect(modulatorGain);
-        modulatorGain.connect(globalGain);
+        modulatorGain.connect(secondaryGain);
+        secondaryGain.connect(globalGain);
 
-        modulatorGain.gain.setValueAtTime(0.0001, audioCtx.currentTime);
-        modulatorGain.gain.exponentialRampToValueAtTime(0.3, audioCtx.currentTime + 0.5);
+        secondaryGain.gain.setValueAtTime(0.0001, audioCtx.currentTime);
+        secondaryGain.gain.exponentialRampToValueAtTime(0.3, audioCtx.currentTime + 0.5);
         
         carrier.start();
         modulatorFreq.start();
-        activeOscillators[key] = {oscillator: [carrier, modulatorFreq], gainNode: modulatorGain};
+        activeOscillators[key] = {oscillator: [carrier, modulatorFreq], gainNode: secondaryGain};
 
         
         if (lfo_on) {
@@ -275,4 +278,5 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
 });
+
 
