@@ -195,13 +195,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
         let depth = audioCtx.createGain();
         let depth_value = document.getElementById("am_depth").value;
         depth.gain.setValueAtTime(depth_value, audioCtx.currentTime);
-        modulatorGain.gain.setValueAtTime(1-depth.gain.value, audioCtx.currentTime);
+        modulatorGain.gain.setValueAtTime(1-depth_value, audioCtx.currentTime);
         modulatorFreq.connect(depth).connect(modulatorGain.gain);
 
+
+        
         carrier.connect(modulatorGain);
         modulatorGain.connect(globalGain);
 
-
+        modulatorGain.gain.setValueAtTime(0.0001, audioCtx.currentTime);
+        modulatorGain.gain.exponentialRampToValueAtTime(0.3, audioCtx.currentTime + 0.5);
+        
         carrier.start();
         modulatorFreq.start();
         activeOscillators[key] = {oscillator: [carrier, modulatorFreq], gainNode: modulatorGain};
@@ -271,3 +275,4 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
 });
+
