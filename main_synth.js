@@ -207,7 +207,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         secondaryGain.connect(globalGain);
 
         secondaryGain.gain.setValueAtTime(0.0001, audioCtx.currentTime);
-        secondaryGain.gain.exponentialRampToValueAtTime(0.3, audioCtx.currentTime + 0.5);
+        secondaryGain.gain.exponentialRampToValueAtTime(0.5, audioCtx.currentTime + 0.5);
         
         carrier.start();
         modulatorFreq.start();
@@ -218,7 +218,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             var lfo = audioCtx.createOscillator();
             lfo.frequency.setValueAtTime(2, audioCtx.currentTime+0.05);
             let lfoGain = audioCtx.createGain();
-            lfoGain.gain.setValueAtTime(5, audioCtx.currentTime + 0.05);
+            lfoGain.gain.setValueAtTime(8, audioCtx.currentTime + 0.05);
             lfo.connect(lfoGain).connect(carrier.frequency);
             lfo.start();
             activeOscillators[key].oscillator.push(lfo);
@@ -232,7 +232,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         let modulator = audioCtx.createOscillator();
         modulator.type = type;
         let modulationIndex = audioCtx.createGain();
-        modulationIndex.gain.setValueAtTime(5, audioCtx.currentTime + 0.05);
+        modulationIndex.gain.setValueAtTime(10, audioCtx.currentTime + 0.05);
         modulator.frequency.setValueAtTime(100, audioCtx.currentTime + 0.05);
 
         modulator.connect(modulationIndex);
@@ -252,7 +252,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             var lfo = audioCtx.createOscillator();
             lfo.frequency.setValueAtTime(2, audioCtx.currentTime);
             let lfoGain = audioCtx.createGain();
-            lfoGain.gain.setValueAtTime(10, audioCtx.currentTime);
+            lfoGain.gain.setValueAtTime(8, audioCtx.currentTime);
             lfo.connect(lfoGain).connect(carrier.frequency);
             lfo.start();
             activeOscillators[key].oscillator.push(lfo);
@@ -278,5 +278,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
 });
+
 
 
